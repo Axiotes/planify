@@ -1,10 +1,29 @@
 services:
+  db:
+    image: mysql:8
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_planify
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+
   backend:
     build: ./api-planify
     ports:
       - "3000:3000"
+    depends_on:
+      - db
     networks:
       - app-network
+    volumes:
+      - ./api-planify:/app
+    command:
+      ["dockerize", "-wait", "tcp://db:3306", "-timeout", "60s", "npm", "start"]
 
   frontend:
     build: ./app-planify
@@ -14,7 +33,12 @@ services:
       - backend
     networks:
       - app-network
+    volumes:
+      - ./app-planify:/app
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  mysql-data: {}
