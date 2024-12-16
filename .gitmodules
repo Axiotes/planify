@@ -1,6 +1,8 @@
 [submodule "api-planify"]
 	path = api-planify
 	url = git@github.com:Axiotes/api-planify.git
+	branch = main
 [submodule "app-planify"]
 	path = app-planify
 	url = git@github.com:Axiotes/app-planify.git
+	branch = main
