@@ -23,14 +23,7 @@ Agenda digital prática e eficiente, projetada para ajudar os usuários a organi
     git --version
     ```
     - Caso não esteja instalado, é possível instalar através do [Downloads - Git](https://git-scm.com/downloads)
-2. **MySQL**
-    - O banco de dados utilizado na aplicação é o MySQL, sendo necessário a instalação do **mysql**
-    - Verificar se o MySQL está instalado:
-    ```
-    mysql --version
-    ```
-    - Caso não esteja instalado, é possível instalar através do [MySQL Community Downloads](https://dev.mysql.com/downloads/)
-3. **Docker**
+2. **Docker**
     - É necessário que tenha **docker** para realizar execução do projeto
     - Verificar se o Docker está instalado
    ```bash
