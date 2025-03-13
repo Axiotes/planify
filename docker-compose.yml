@@ -13,6 +13,8 @@ services:
       - mysql-data:/var/lib/mysql
 
   backend:
+    stdin_open: true
+    tty: true
     build: ./api-planify
     ports:
       - "3000:3000"
@@ -23,9 +25,15 @@ services:
     volumes:
       - ./api-planify:/app
     command:
-      ["dockerize", "-wait", "tcp://db:3306", "-timeout", "60s", "npm", "start"]
+      - bash
+      - -c
+      - |
+        npm install
+        npm start
 
   frontend:
+    stdin_open: true
+    tty: true
     build: ./app-planify
     ports:
       - "4200:4200"
@@ -35,6 +43,15 @@ services:
       - app-network
     volumes:
       - ./app-planify:/app
+    command:
+      - bash
+      - -c
+      - |
+        npm install
+        npm start
+    environment:
+      - NG_CLI_ANALYTICS=false
+
 
 networks:
   app-network:
