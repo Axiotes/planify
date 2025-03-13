@@ -29,7 +29,6 @@ services:
       - -c
       - |
         npm install
-        dockerize -wait tcp://db:3306 -timeout 60s
         npm start
 
   frontend:
